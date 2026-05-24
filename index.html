@@ -1,103 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Smart Bingo</title>
 
 <style>
 
 body{
-    margin:0;
-    padding:0;
-    background:#d9b8e8;
-    font-family:Arial;
-    color:white;
-    text-align:center;
+background:#d8b6e6;
+font-family:Arial;
+text-align:center;
+margin:0;
+padding:0;
+overflow-y:auto;
 }
 
-/* TOP */
-.top{
-    background:#b88ccf;
-    padding:10px;
-    display:flex;
-    justify-content:space-around;
-    flex-wrap:wrap;
-    gap:8px;
-}
-
-.box{
-    background:#eee;
-    color:#6d0078;
-    width:90px;
-    padding:10px 5px;
-    border-radius:12px;
-    font-weight:bold;
-    font-size:15px;
-}
-
-/* TITLE */
 h1{
-    color:#6d0078;
-    margin-top:15px;
+margin-top:30px;
+font-size:34px;
+color:#6a0080;
 }
 
-/* BUTTON */
-.playBtn{
-    background:#00b050;
-    border:none;
-    color:white;
-    padding:14px 35px;
-    border-radius:15px;
-    font-size:22px;
-    margin-top:10px;
+.btn{
+margin-top:20px;
+padding:16px 40px;
+font-size:22px;
+border:none;
+border-radius:18px;
+background:#00c853;
+color:white;
+font-weight:bold;
+cursor:pointer;
 }
 
-/* INFO */
 .info{
-    color:#6d0078;
-    font-size:20px;
-    margin-top:12px;
-    font-weight:bold;
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+color:#6a0080;
 }
 
-/* BOARD AREA */
 .board{
-    margin-top:20px;
-    display:none;
-    grid-template-columns:repeat(5,70px);
-    gap:14px;
-    justify-content:center;
-    padding-bottom:80px;
+display:none;
+grid-template-columns:repeat(5,65px);
+gap:10px;
+justify-content:center;
+margin-top:30px;
+padding-bottom:80px;
 }
 
-/* CELLS */
 .cell{
-    width:70px;
-    height:70px;
-    background:#d7cef0;
-    border-radius:18px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:28px;
-    color:white;
-    cursor:pointer;
-    user-select:none;
-    transition:0.2s;
-    border:2px solid rgba(255,255,255,0.3);
+width:65px;
+height:65px;
+background:#d9d0ef;
+border:3px solid #e6dff7;
+border-radius:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+color:white;
+cursor:pointer;
+user-select:none;
+font-weight:bold;
 }
 
-/* SELECTED */
-.selected{
-    background:orange;
-    color:white;
-}
-
-/* FREE STAR */
-.star{
-    background:orange !important;
-    color:white;
+.marked{
+background:orange;
+color:white;
 }
 
 </style>
@@ -105,34 +78,9 @@ h1{
 
 <body>
 
-<!-- TOP INFO -->
-<div class="top">
-
-<div class="box">
-Derash<br>1552
-</div>
-
-<div class="box">
-Players<br>194
-</div>
-
-<div class="box">
-Bet<br>10
-</div>
-
-<div class="box">
-Call<br>18
-</div>
-
-<div class="box">
-Game Nº<br>2 of 2
-</div>
-
-</div>
-
 <h1>🎮 Smart Bingo</h1>
 
-<button class="playBtn" onclick="startGame()">
+<button class="btn" onclick="startGame()">
 ▶️ Play 10
 </button>
 
@@ -145,71 +93,62 @@ Selected Boards:
 
 <script>
 
-let selectedCount = 0
+let selectedCount = 0;
 
 function startGame(){
 
-    const board = document.getElementById("board")
+let board = document.getElementById("board");
 
-    board.innerHTML = ""
+board.innerHTML = "";
 
-    board.style.display = "grid"
+board.style.display = "grid";
 
-    selectedCount = 0
+selectedCount = 0;
 
-    document.getElementById("count").innerHTML = selectedCount
+document.getElementById("count").innerHTML = selectedCount;
 
-    for(let i=1; i<=400; i++){
+for(let i=1; i<=400; i++){
 
-        let cell = document.createElement("div")
+let cell = document.createElement("div");
 
-        cell.className = "cell"
+cell.className = "cell";
 
-        /* STAR POSITION */
-        if(i === 200){
-            cell.innerHTML = "*"
-            cell.classList.add("star")
-        }else{
-            cell.innerHTML = i
-        }
+cell.innerHTML = i;
 
-        cell.onclick = function(){
+cell.onclick = function(){
 
-            /* STAR CANNOT CHANGE */
-            if(i === 200){
-                return
-            }
+if(cell.classList.contains("marked")){
 
-            /* REMOVE */
-            if(cell.classList.contains("selected")){
+cell.classList.remove("marked");
 
-                cell.classList.remove("selected")
+selectedCount--;
 
-                selectedCount--
+document.getElementById("count").innerHTML = selectedCount;
 
-                document.getElementById("count").innerHTML = selectedCount
+return;
 
-                return
-            }
+}
 
-            /* LIMIT 2 */
-            if(selectedCount >= 2){
+if(selectedCount >= 2){
 
-                alert("❌ You can only select 2 boards")
+alert("❌ You can only select 2 boards");
 
-                return
-            }
+return;
 
-            /* SELECT */
-            cell.classList.add("selected")
+}
 
-            selectedCount++
+cell.classList.add("marked");
 
-            document.getElementById("count").innerHTML = selectedCount
-        }
+selectedCount++;
 
-        board.appendChild(cell)
-    }
+document.getElementById("count").innerHTML = selectedCount;
+
+};
+
+board.appendChild(cell);
+
+}
+
 }
 
 </script>
