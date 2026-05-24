@@ -73,12 +73,8 @@ h1{
 
 <div class="top">
 
-<button class="btn" onclick="startGame(10)">
+<button class="btn" onclick="startGame()">
 ▶️ Play 10
-</button>
-
-<button class="btn" onclick="startGame(20)">
-▶️ Play 20
 </button>
 
 </div>
@@ -89,31 +85,19 @@ h1{
 
 let board = document.getElementById("board")
 
-function startGame(amount){
+function startGame(){
 
     board.innerHTML=""
 
     board.style.display="grid"
 
-    let numbers=[]
-
-    while(numbers.length < 100){
-
-        let random=Math.floor(Math.random()*400)+1
-
-        if(!numbers.includes(random)){
-
-            numbers.push(random)
-        }
-    }
-
-    for(let i=0;i<numbers.length;i++){
+    for(let i=1;i<=100;i++){
 
         let cell=document.createElement("div")
 
         cell.className="cell"
 
-        cell.innerText=numbers[i]
+        cell.innerText=i
 
         cell.onclick=function(){
 
@@ -123,7 +107,7 @@ function startGame(amount){
         board.appendChild(cell)
     }
 
-    alert("Game Started 🎉 Bet "+amount)
+    alert("🎉 Game Started")
 }
 
 </script>
