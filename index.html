@@ -23,13 +23,13 @@ overflow-y:auto;
 
 h1{
 margin-top:20px;
-font-size:32px;
+font-size:30px;
 }
 
 .btn{
 margin-top:20px;
-padding:15px 35px;
-font-size:22px;
+padding:14px 30px;
+font-size:20px;
 border:none;
 border-radius:12px;
 background:#00c853;
@@ -40,9 +40,9 @@ color:white;
 
 display:none;
 
-grid-template-columns:repeat(10,36px);
+grid-template-columns:repeat(10,32px);
 
-gap:5px;
+gap:4px;
 
 justify-content:center;
 
@@ -53,13 +53,13 @@ padding-bottom:60px;
 
 .cell{
 
-width:36px;
+width:32px;
 
-height:36px;
+height:32px;
 
 background:#2d1d54;
 
-border-radius:7px;
+border-radius:6px;
 
 display:flex;
 
@@ -67,10 +67,11 @@ align-items:center;
 
 justify-content:center;
 
-font-size:12px;
+font-size:11px;
 
 color:white;
 
+user-select:none;
 }
 
 .marked{
@@ -113,7 +114,13 @@ cell.innerHTML=i
 
 cell.onclick=function(){
 
-cell.classList.toggle("marked")
+if(cell.classList.contains("marked")){
+
+return
+
+}
+
+cell.classList.add("marked")
 
 }
 
