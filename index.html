@@ -1,80 +1,121 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Bingo</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Bingo</title>
 
 <style>
 
 body{
-background:#1b0d3a;
-color:white;
-font-family:Arial;
-text-align:center;
+    background:#14052c;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    margin:0;
+    padding:0;
 }
 
 h1{
-margin-top:30px;
+    padding-top:20px;
+    font-size:35px;
+}
+
+.top{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 25px;
+    border:none;
+    border-radius:12px;
+    font-size:20px;
+    color:white;
+    background:linear-gradient(to right,#00c853,#2962ff);
 }
 
 .board{
-display:grid;
-grid-template-columns:repeat(5,60px);
-gap:10px;
-justify-content:center;
-margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(10,45px);
+    gap:8px;
+    justify-content:center;
+    margin-top:30px;
+    padding-bottom:50px;
 }
 
 .cell{
-width:60px;
-height:60px;
-background:#3b2a63;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:10px;
-font-size:22px;
+    width:45px;
+    height:45px;
+    background:#2c1b52;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.marked{
+    background:#ff9800;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<h1>🎮 Beteseb Bingo</h1>
+<h1>🎮 Smart Bingo</h1>
 
-<div class="board">
+<div class="top">
 
-<div class="cell">1</div>
-<div class="cell">2</div>
-<div class="cell">3</div>
-<div class="cell">4</div>
-<div class="cell">5</div>
+<button class="btn">
+▶ Play 10
+</button>
 
-<div class="cell">6</div>
-<div class="cell">7</div>
-<div class="cell">8</div>
-<div class="cell">9</div>
-<div class="cell">10</div>
+<button class="btn">
+▶ Play 50
+</button>
 
-<div class="cell">11</div>
-<div class="cell">12</div>
-<div class="cell">13</div>
-<div class="cell">14</div>
-<div class="cell">15</div>
-
-<div class="cell">16</div>
-<div class="cell">17</div>
-<div class="cell">18</div>
-<div class="cell">19</div>
-<div class="cell">20</div>
-
-<div class="cell">21</div>
-<div class="cell">22</div>
-<div class="cell">23</div>
-<div class="cell">24</div>
-<div class="cell">25</div>
+<button class="btn">
+▶ Play 100
+</button>
 
 </div>
 
+<div class="board" id="board"></div>
+
+<script>
+
+let board = document.getElementById("board")
+
+for(let i=1;i<=400;i++){
+
+    let cell=document.createElement("div")
+
+    cell.className="cell"
+
+    cell.innerText=i
+
+    cell.onclick=function(){
+
+        cell.classList.toggle("marked")
+
+    }
+
+    board.appendChild(cell)
+}
+
+</script>
+
 </body>
+
 </html>
