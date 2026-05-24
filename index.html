@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Smart Bingo</title>
@@ -21,20 +20,17 @@ body{
 }
 
 h1{
-    padding-top:20px;
-    font-size:35px;
+    margin-top:25px;
+    font-size:32px;
 }
 
 .top{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-top:20px;
-    flex-wrap:wrap;
+    margin-top:30px;
 }
 
 .btn{
-    padding:15px 25px;
+    padding:14px 22px;
+    margin:10px;
     border:none;
     border-radius:12px;
     font-size:20px;
@@ -43,23 +39,23 @@ h1{
 }
 
 .board{
-    display:grid;
-    grid-template-columns:repeat(10,45px);
-    gap:8px;
+    display:none;
+    grid-template-columns:repeat(10,32px);
+    gap:5px;
     justify-content:center;
     margin-top:30px;
-    padding-bottom:50px;
+    padding-bottom:40px;
 }
 
 .cell{
-    width:45px;
-    height:45px;
-    background:#2c1b52;
-    border-radius:10px;
+    width:32px;
+    height:32px;
+    background:#2d1d54;
+    border-radius:7px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:18px;
+    font-size:12px;
     cursor:pointer;
 }
 
@@ -77,16 +73,12 @@ h1{
 
 <div class="top">
 
-<button class="btn">
-▶ Play 10
+<button class="btn" onclick="startGame(10)">
+▶️ Play 10
 </button>
 
-<button class="btn">
-▶ Play 50
-</button>
-
-<button class="btn">
-▶ Play 100
+<button class="btn" onclick="startGame(20)">
+▶️ Play 20
 </button>
 
 </div>
@@ -97,21 +89,41 @@ h1{
 
 let board = document.getElementById("board")
 
-for(let i=1;i<=400;i++){
+function startGame(amount){
 
-    let cell=document.createElement("div")
+    board.innerHTML=""
 
-    cell.className="cell"
+    board.style.display="grid"
 
-    cell.innerText=i
+    let numbers=[]
 
-    cell.onclick=function(){
+    while(numbers.length < 100){
 
-        cell.classList.toggle("marked")
+        let random=Math.floor(Math.random()*400)+1
 
+        if(!numbers.includes(random)){
+
+            numbers.push(random)
+        }
     }
 
-    board.appendChild(cell)
+    for(let i=0;i<numbers.length;i++){
+
+        let cell=document.createElement("div")
+
+        cell.className="cell"
+
+        cell.innerText=numbers[i]
+
+        cell.onclick=function(){
+
+            cell.classList.toggle("marked")
+        }
+
+        board.appendChild(cell)
+    }
+
+    alert("Game Started 🎉 Bet "+amount)
 }
 
 </script>
