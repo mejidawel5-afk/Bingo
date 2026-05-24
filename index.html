@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Smart Bingo</title>
@@ -11,56 +12,66 @@
 <style>
 
 body{
-    background:#14052c;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-    margin:0;
-    padding:0;
+background:#14052c;
+font-family:Arial;
+text-align:center;
+margin:0;
+padding:0;
+color:white;
 }
 
 h1{
-    margin-top:25px;
-    font-size:32px;
-}
-
-.top{
-    margin-top:30px;
+margin-top:20px;
+font-size:30px;
 }
 
 .btn{
-    padding:14px 22px;
-    margin:10px;
-    border:none;
-    border-radius:12px;
-    font-size:20px;
-    color:white;
-    background:linear-gradient(to right,#00c853,#2962ff);
+margin-top:20px;
+padding:14px 30px;
+font-size:20px;
+border:none;
+border-radius:12px;
+background:#00c853;
+color:white;
 }
 
 .board{
-    display:none;
-    grid-template-columns:repeat(10,32px);
-    gap:5px;
-    justify-content:center;
-    margin-top:30px;
-    padding-bottom:40px;
+
+display:none;
+
+grid-template-columns:repeat(10,30px);
+
+gap:4px;
+
+justify-content:center;
+
+margin-top:25px;
+
+padding-bottom:40px;
 }
 
 .cell{
-    width:32px;
-    height:32px;
-    background:#2d1d54;
-    border-radius:7px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:12px;
-    cursor:pointer;
+
+width:30px;
+
+height:30px;
+
+background:#2d1d54;
+
+border-radius:5px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:11px;
+
 }
 
 .marked{
-    background:#ff9800;
+background:orange;
 }
 
 </style>
@@ -71,43 +82,42 @@ h1{
 
 <h1>🎮 Smart Bingo</h1>
 
-<div class="top">
-
 <button class="btn" onclick="startGame()">
-▶️ Play 10
-</button>
 
-</div>
+▶️ Play 10
+
+</button>
 
 <div class="board" id="board"></div>
 
 <script>
 
-let board = document.getElementById("board")
-
 function startGame(){
 
-    board.innerHTML=""
+let board=document.getElementById("board")
 
-    board.style.display="grid"
+board.innerHTML=""
 
-    for(let i=1;i<=100;i++){
+board.style.display="grid"
 
-        let cell=document.createElement("div")
+for(let i=1;i<=100;i++){
 
-        cell.className="cell"
+let cell=document.createElement("div")
 
-        cell.innerText=i
+cell.className="cell"
 
-        cell.onclick=function(){
+cell.innerHTML=i
 
-            cell.classList.toggle("marked")
-        }
+cell.onclick=function(){
 
-        board.appendChild(cell)
-    }
+cell.classList.toggle("marked")
 
-    alert("🎉 Game Started")
+}
+
+board.appendChild(cell)
+
+}
+
 }
 
 </script>
