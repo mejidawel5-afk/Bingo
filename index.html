@@ -36,6 +36,11 @@ background:#00c853;
 color:white;
 }
 
+.info{
+margin-top:15px;
+font-size:18px;
+}
+
 .board{
 
 display:none;
@@ -72,6 +77,8 @@ font-size:11px;
 color:white;
 
 user-select:none;
+
+cursor:pointer;
 }
 
 .marked{
@@ -92,9 +99,18 @@ background:orange;
 
 </button>
 
+<div class="info">
+
+Selected Boards:
+<span id="count">0</span>/2
+
+</div>
+
 <div class="board" id="board"></div>
 
 <script>
+
+let selectedCount = 0
 
 function startGame(){
 
@@ -103,6 +119,10 @@ let board=document.getElementById("board")
 board.innerHTML=""
 
 board.style.display="grid"
+
+selectedCount = 0
+
+document.getElementById("count").innerHTML = selectedCount
 
 for(let i=1;i<=400;i++){
 
@@ -116,11 +136,29 @@ cell.onclick=function(){
 
 if(cell.classList.contains("marked")){
 
+cell.classList.remove("marked")
+
+selectedCount--
+
+document.getElementById("count").innerHTML = selectedCount
+
+return
+
+}
+
+if(selectedCount >= 2){
+
+alert("❌ You can only select 2 boards")
+
 return
 
 }
 
 cell.classList.add("marked")
+
+selectedCount++
+
+document.getElementById("count").innerHTML = selectedCount
 
 }
 
