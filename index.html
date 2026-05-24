@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,36 +10,38 @@
 <style>
 
 body{
-background:#d6b6e3;
+background:#d8b9e6;
 font-family:Arial;
+text-align:center;
 margin:0;
 padding:0;
-text-align:center;
+color:white;
 overflow-y:auto;
 }
 
 h1{
+margin-top:40px;
+font-size:38px;
+font-weight:bold;
 color:purple;
-font-size:32px;
-margin-top:20px;
 }
 
 .btn{
-background:#00c853;
-color:white;
+margin-top:25px;
+padding:18px 55px;
+font-size:26px;
 border:none;
-padding:14px 40px;
-font-size:28px;
-border-radius:20px;
-margin-top:20px;
+border-radius:22px;
+background:#00d84f;
+color:white;
 cursor:pointer;
 }
 
 .info{
-font-size:20px;
+margin-top:18px;
+font-size:28px;
 font-weight:bold;
 color:purple;
-margin-top:15px;
 }
 
 .board{
@@ -52,7 +54,7 @@ gap:6px;
 
 justify-content:center;
 
-margin-top:25px;
+margin-top:30px;
 
 padding-bottom:60px;
 }
@@ -63,11 +65,11 @@ width:58px;
 
 height:58px;
 
-background:#2d1d54;
+background:#d7cfe6;
 
-border:2px solid #d7cfe6;
+border:2px solid #e8e1f0;
 
-border-radius:14px;
+border-radius:16px;
 
 display:flex;
 
@@ -88,6 +90,12 @@ cursor:pointer;
 background:orange;
 border:2px solid #ffcc80;
 }
+
+</style>
+
+</head>
+
+<body>
 
 <h1>🎮 Smart Bingo</h1>
 
@@ -118,15 +126,15 @@ selectedCount = 0
 
 document.getElementById("count").innerHTML = selectedCount
 
-for(let i=1;i<=400;i++){
+for(let i=1;i<=100;i++){
 
-let cell=document.createElement("div")
+let cell = document.createElement("div")
 
-cell.className="cell"
+cell.className = "cell"
 
-cell.innerHTML=i
+cell.innerHTML = i
 
-cell.onclick=function(){
+cell.onclick = function(){
 
 if(cell.classList.contains("marked")){
 
@@ -134,10 +142,9 @@ cell.classList.remove("marked")
 
 selectedCount--
 
-document.getElementById("count").innerHTML=selectedCount
+document.getElementById("count").innerHTML = selectedCount
 
 return
-
 }
 
 if(selectedCount >= 2){
@@ -145,21 +152,17 @@ if(selectedCount >= 2){
 alert("❌ You can only select 2 boards")
 
 return
-
 }
 
 cell.classList.add("marked")
 
 selectedCount++
 
-document.getElementById("count").innerHTML=selectedCount
-
+document.getElementById("count").innerHTML = selectedCount
 }
 
 board.appendChild(cell)
-
 }
-
 }
 
 </script>
