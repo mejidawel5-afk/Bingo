@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,62 +10,61 @@
 <style>
 
 body{
-background:#d8b6e6;
+background:#d6b6e3;
 font-family:Arial;
-text-align:center;
 margin:0;
 padding:0;
+text-align:center;
 overflow-y:auto;
 }
 
 h1{
-margin-top:30px;
-font-size:34px;
-color:#6a0080;
+color:purple;
+font-size:32px;
+margin-top:20px;
 }
 
 .btn{
-margin-top:20px;
-padding:16px 40px;
-font-size:22px;
-border:none;
-border-radius:18px;
 background:#00c853;
 color:white;
-font-weight:bold;
+border:none;
+padding:14px 40px;
+font-size:28px;
+border-radius:20px;
+margin-top:20px;
 cursor:pointer;
 }
 
 .info{
-margin-top:20px;
 font-size:20px;
 font-weight:bold;
-color:#6a0080;
+color:purple;
+margin-top:15px;
 }
 
 .board{
 display:none;
-grid-template-columns:repeat(5,65px);
-gap:10px;
+grid-template-columns:repeat(5,50px);
+gap:7px;
 justify-content:center;
 margin-top:30px;
-padding-bottom:80px;
+padding-bottom:100px;
 }
 
 .cell{
-width:65px;
-height:65px;
-background:#d9d0ef;
-border:3px solid #e6dff7;
-border-radius:16px;
+width:50px;
+height:50px;
+background:#d8cdea;
+border:3px solid #e4dff0;
+border-radius:14px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:20px;
+font-size:16px;
 color:white;
 cursor:pointer;
 user-select:none;
-font-weight:bold;
+transition:0.2s;
 }
 
 .marked{
@@ -74,6 +73,7 @@ color:white;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -93,59 +93,59 @@ Selected Boards:
 
 <script>
 
-let selectedCount = 0;
+let selectedCount = 0
 
 function startGame(){
 
-let board = document.getElementById("board");
+let board = document.getElementById("board")
 
-board.innerHTML = "";
+board.innerHTML = ""
 
-board.style.display = "grid";
+board.style.display = "grid"
 
-selectedCount = 0;
+selectedCount = 0
 
-document.getElementById("count").innerHTML = selectedCount;
+document.getElementById("count").innerHTML = selectedCount
 
-for(let i=1; i<=400; i++){
+for(let i=1;i<=400;i++){
 
-let cell = document.createElement("div");
+let cell=document.createElement("div")
 
-cell.className = "cell";
+cell.className="cell"
 
-cell.innerHTML = i;
+cell.innerHTML=i
 
-cell.onclick = function(){
+cell.onclick=function(){
 
 if(cell.classList.contains("marked")){
 
-cell.classList.remove("marked");
+cell.classList.remove("marked")
 
-selectedCount--;
+selectedCount--
 
-document.getElementById("count").innerHTML = selectedCount;
+document.getElementById("count").innerHTML=selectedCount
 
-return;
+return
 
 }
 
 if(selectedCount >= 2){
 
-alert("❌ You can only select 2 boards");
+alert("❌ You can only select 2 boards")
 
-return;
+return
 
 }
 
-cell.classList.add("marked");
+cell.classList.add("marked")
 
-selectedCount++;
+selectedCount++
 
-document.getElementById("count").innerHTML = selectedCount;
+document.getElementById("count").innerHTML=selectedCount
 
-};
+}
 
-board.appendChild(cell);
+board.appendChild(cell)
 
 }
 
