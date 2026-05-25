@@ -90,7 +90,13 @@ cursor:pointer;
 background:orange;
 border:2px solid #ffcc80;
 }
-
+#calledNumber{
+font-size:70px;
+font-weight:bold;
+color:orange;
+margin-top:25px;
+text-shadow:0 0 20px orange;
+}
 </style>
 
 </head>
@@ -106,13 +112,27 @@ Welcome to Smart Bingo
 <button class="btn" onclick="startGame()">
 ▶️ Play 10
 </button>
+<br><br>
 
+<button class="btn" onclick="callNumber()">
+🎲 Call Number
+</button>
+
+<div id="calledNumber">
+0
+</div>
 <div class="board" id="board"></div>
 
 <script>
 
 function startGame(){
+function callNumber(){
 
+let randomNumber = Math.floor(Math.random() * 400) + 1
+
+document.getElementById("calledNumber").innerHTML = randomNumber
+
+}
 document.getElementById("welcomeText").classList.add("hideWelcome")
 
 let board = document.getElementById("board")
