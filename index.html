@@ -61,20 +61,12 @@ transform:scale(1);
 }
 }
 
-.info{
-margin-top:18px;
-font-size:28px;
-font-weight:bold;
-color:purple;
-display:none;
-}
-
 .board{
 display:none;
 grid-template-columns:repeat(10,26px);
 gap:8px;
 justify-content:center;
-margin-top:15px;
+margin-top:25px;
 padding-bottom:40px;
 }
 
@@ -115,34 +107,19 @@ Welcome to Smart Bingo
 ▶️ Play 10
 </button>
 
-<div class="info" id="info">
-
-Selected Boards:
-<span id="count">0</span>/2
-
-</div>
-
 <div class="board" id="board"></div>
 
 <script>
 
-let selectedCount = 0
-
 function startGame(){
 
 document.getElementById("welcomeText").classList.add("hideWelcome")
-
-document.getElementById("info").style.display = "block"
 
 let board = document.getElementById("board")
 
 board.innerHTML = ""
 
 board.style.display = "grid"
-
-selectedCount = 0
-
-document.getElementById("count").innerHTML = selectedCount
 
 for(let i=1;i<=400;i++){
 
@@ -154,29 +131,8 @@ cell.innerHTML = i
 
 cell.onclick = function(){
 
-if(cell.classList.contains("marked")){
+cell.classList.toggle("marked")
 
-cell.classList.remove("marked")
-
-selectedCount--
-
-document.getElementById("count").innerHTML = selectedCount
-
-return
-}
-
-if(selectedCount >= 2){
-
-alert("❌ You can only select 2 boards")
-
-return
-}
-
-cell.classList.add("marked")
-
-selectedCount++
-
-document.getElementById("count").innerHTML = selectedCount
 }
 
 board.appendChild(cell)
