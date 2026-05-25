@@ -36,6 +36,7 @@ background:#00d84f;
 color:white;
 cursor:pointer;
 }
+
 .welcome{
 font-size:42px;
 font-weight:bold;
@@ -43,6 +44,10 @@ color:white;
 margin-top:80px;
 text-shadow:0 0 15px rgba(255,255,255,0.5);
 animation:fade 2s infinite alternate;
+}
+
+.hideWelcome{
+display:none;
 }
 
 @keyframes fade{
@@ -55,11 +60,13 @@ opacity:1;
 transform:scale(1);
 }
 }
+
 .info{
 margin-top:18px;
 font-size:28px;
 font-weight:bold;
 color:purple;
+display:none;
 }
 
 .board{
@@ -80,7 +87,8 @@ border-radius:8px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:12px;
+font-size:15px;
+font-weight:bold;
 color:white;
 user-select:none;
 cursor:pointer;
@@ -98,14 +106,16 @@ border:2px solid #ffcc80;
 <body>
 
 <h1>🎮 Smart Bingo</h1>
-<div class="welcome">
+
+<div class="welcome" id="welcomeText">
 Welcome to Smart Bingo
 </div>
+
 <button class="btn" onclick="startGame()">
 ▶️ Play 10
 </button>
 
-<div class="info" style="display:none;">
+<div class="info" id="info">
 
 Selected Boards:
 <span id="count">0</span>/2
@@ -119,6 +129,10 @@ Selected Boards:
 let selectedCount = 0
 
 function startGame(){
+
+document.getElementById("welcomeText").classList.add("hideWelcome")
+
+document.getElementById("info").style.display = "block"
 
 let board = document.getElementById("board")
 
