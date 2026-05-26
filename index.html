@@ -20,28 +20,33 @@ overflow-y:auto;
 }
 
 h1{
-margin-top:40px;
+margin-top:35px;
 font-size:38px;
 font-weight:bold;
 color:purple;
 }
 
 .btn{
-margin-top:25px;
-padding:18px 55px;
-font-size:26px;
+margin-top:20px;
+padding:15px 45px;
+font-size:22px;
 border:none;
-border-radius:22px;
+border-radius:20px;
 background:#00d84f;
 color:white;
 cursor:pointer;
+transition:0.2s;
+}
+
+.btn:hover{
+transform:scale(1.05);
 }
 
 .welcome{
 font-size:42px;
 font-weight:bold;
 color:white;
-margin-top:80px;
+margin-top:70px;
 text-shadow:0 0 15px rgba(255,255,255,0.5);
 animation:fade 2s infinite alternate;
 }
@@ -63,11 +68,11 @@ transform:scale(1);
 
 .players{
 display:none;
-grid-template-columns:repeat(10,30px);
-gap:4px;
+grid-template-columns:repeat(10,26px);
+gap:3px;
 justify-content:center;
 margin-top:25px;
-padding-bottom:40px;
+padding-bottom:35px;
 }
 
 .player{
@@ -83,10 +88,12 @@ font-size:10px;
 font-weight:bold;
 color:white;
 cursor:pointer;
+transition:0.2s;
 }
 
 .player:hover{
 background:orange;
+transform:scale(1.1);
 }
 
 .board{
@@ -114,10 +121,15 @@ cursor:pointer;
 transition:0.2s;
 }
 
+.cell:hover{
+transform:scale(1.08);
+}
+
 .marked{
 background:orange;
 border:2px solid #ffcc80;
 transform:scale(1.1);
+box-shadow:0 0 12px orange;
 }
 
 .headerCell{
@@ -126,12 +138,22 @@ border:2px solid #c084fc;
 }
 
 #calledNumber{
-font-size:70px;
+font-size:75px;
 font-weight:bold;
 color:orange;
 margin-top:25px;
 text-shadow:0 0 20px orange;
 display:none;
+animation:pulse 1s infinite alternate;
+}
+
+@keyframes pulse{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.1);
+}
 }
 
 #winnerText{
@@ -139,7 +161,7 @@ display:none;
 font-size:45px;
 font-weight:bold;
 color:gold;
-margin-top:25px;
+margin-top:20px;
 animation:pop 1s infinite alternate;
 text-shadow:0 0 20px gold;
 }
@@ -158,6 +180,10 @@ transform:scale(1.15);
 </head>
 
 <body>
+
+<audio id="callSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+<audio id="winSound" src="https://www.soundjay.com/human/sounds/applause-8.mp3"></audio>
 
 <h1>🎮 Smart Bingo</h1>
 
@@ -290,20 +316,27 @@ function callNumber(){
 document.getElementById("calledNumber").style.display = "block"
 
 if(usedNumbers.length >= 75){
+
 alert("All numbers called")
+
 return
+
 }
 
 let randomNumber
 
 do{
+
 randomNumber = Math.floor(Math.random() * 75) + 1
+
 }
 while(usedNumbers.includes(randomNumber))
 
 usedNumbers.push(randomNumber)
 
 document.getElementById("calledNumber").innerHTML = randomNumber
+
+document.getElementById("callSound").play()
 
 let cells = document.querySelectorAll(".cell")
 
@@ -356,6 +389,8 @@ win = false
 if(win){
 
 document.getElementById("winnerText").style.display = "block"
+
+document.getElementById("winSound").play()
 
 return
 
