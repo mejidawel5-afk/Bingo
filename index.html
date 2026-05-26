@@ -250,6 +250,8 @@ cell.onclick = function(){
 
 cell.classList.toggle("marked")
 
+checkWinner()
+
 }
 
 board.appendChild(cell)
@@ -289,6 +291,52 @@ cell.classList.add("marked")
 }
 
 })
+
+checkWinner()
+
+}
+
+function checkWinner(){
+
+let cells = document.querySelectorAll(".cell")
+
+let board = []
+
+cells.forEach(cell => {
+
+if(!cell.classList.contains("headerCell")){
+
+board.push(cell)
+
+}
+
+})
+
+for(let row=0; row<5; row++){
+
+let win = true
+
+for(let col=0; col<5; col++){
+
+let index = row * 5 + col
+
+if(!board[index].classList.contains("marked")){
+
+win = false
+
+}
+
+}
+
+if(win){
+
+alert("🎉 BINGO WINNER!")
+
+return
+
+}
+
+}
 
 }
 
