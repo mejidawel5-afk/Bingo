@@ -134,6 +134,25 @@ text-shadow:0 0 20px orange;
 display:none;
 }
 
+#winnerText{
+display:none;
+font-size:45px;
+font-weight:bold;
+color:gold;
+margin-top:25px;
+animation:pop 1s infinite alternate;
+text-shadow:0 0 20px gold;
+}
+
+@keyframes pop{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.15);
+}
+}
+
 </style>
 
 </head>
@@ -158,6 +177,10 @@ Welcome to Smart Bingo
 
 <div id="calledNumber">
 0
+</div>
+
+<div id="winnerText">
+🎉 BINGO WINNER 🎉
 </div>
 
 <div class="players" id="players"></div>
@@ -199,6 +222,8 @@ players.appendChild(player)
 }
 
 function openBoard(playerId){
+
+document.getElementById("winnerText").style.display = "none"
 
 let board = document.getElementById("board")
 
@@ -330,7 +355,7 @@ win = false
 
 if(win){
 
-alert("🎉 BINGO WINNER!")
+document.getElementById("winnerText").style.display = "block"
 
 return
 
