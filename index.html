@@ -61,42 +61,73 @@ transform:scale(1);
 }
 }
 
-.board{
+.players{
 display:none;
-grid-template-columns:repeat(10,26px);
+grid-template-columns:repeat(10,30px);
 gap:8px;
 justify-content:center;
 margin-top:25px;
 padding-bottom:40px;
 }
 
-.cell{
-width:26px;
-height:26px;
+.player{
+width:30px;
+height:30px;
 background:#d7cfe6;
 border:2px solid #e8e1f0;
 border-radius:8px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:15px;
+font-size:12px;
 font-weight:bold;
 color:white;
-user-select:none;
 cursor:pointer;
+}
+
+.player:hover{
+background:orange;
+}
+
+.board{
+display:none;
+grid-template-columns:repeat(5,55px);
+gap:10px;
+justify-content:center;
+margin-top:30px;
+}
+
+.cell{
+width:55px;
+height:55px;
+background:#d7cfe6;
+border:2px solid #e8e1f0;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+transition:0.2s;
 }
 
 .marked{
 background:orange;
 border:2px solid #ffcc80;
+transform:scale(1.1);
 }
+
 #calledNumber{
 font-size:70px;
 font-weight:bold;
 color:orange;
 margin-top:25px;
 text-shadow:0 0 20px orange;
+display:none;
 }
+
 </style>
 
 </head>
@@ -110,8 +141,9 @@ Welcome to Smart Bingo
 </div>
 
 <button class="btn" onclick="startGame()">
-▶️ Play 10
+▶️ Play
 </button>
+
 <br><br>
 
 <button class="btn" onclick="callNumber()">
@@ -121,19 +153,46 @@ Welcome to Smart Bingo
 <div id="calledNumber">
 0
 </div>
+
+<div class="players" id="players"></div>
+
 <div class="board" id="board"></div>
 
 <script>
 
+let usedNumbers = []
+
 function startGame(){
-function callNumber(){
 
-let randomNumber = Math.floor(Math.random() * 400) + 1
+document.getElementById("welcomeText").classList.add("hideWelcome")
 
-document.getElementById("calledNumber").innerHTML = randomNumber
+let players = document.getElementById("players")
+
+players.innerHTML = ""
+
+players.style.display = "grid"
+
+for(let i=1;i<=400;i++){
+
+let player = document.createElement("div")
+
+player.className = "player"
+
+player.innerHTML = i
+
+player.onclick = function(){
+
+openBoard(i)
 
 }
-document.getElementById("welcomeText").classList.add("hideWelcome")
+
+players.appendChild(player)
+
+}
+
+}
+
+function openBoard(playerId){
 
 let board = document.getElementById("board")
 
@@ -141,13 +200,21 @@ board.innerHTML = ""
 
 board.style.display = "grid"
 
-for(let i=1;i<=400;i++){
+let numbers = []
+
+for(let i=1;i<=75;i++){
+numbers.push(i)
+}
+
+numbers.sort(() => Math.random() - 0.5)
+
+for(let i=0;i<25;i++){
 
 let cell = document.createElement("div")
 
 cell.className = "cell"
 
-cell.innerHTML = i
+cell.innerHTML = numbers[i]
 
 cell.onclick = function(){
 
@@ -156,10 +223,35 @@ cell.classList.toggle("marked")
 }
 
 board.appendChild(cell)
+
 }
+
+}
+
+function callNumber(){
+
+document.getElementById("calledNumber").style.display = "block"
+
+if(usedNumbers.length >= 75){
+alert("All numbers called")
+return
+}
+
+let randomNumber
+
+do{
+randomNumber = Math.floor(Math.random() * 75) + 1
+}
+while(usedNumbers.includes(randomNumber))
+
+usedNumbers.push(randomNumber)
+
+document.getElementById("calledNumber").innerHTML = randomNumber
+
 }
 
 </script>
 
 </body>
+
 </html>
