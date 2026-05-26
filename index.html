@@ -91,10 +91,11 @@ background:orange;
 
 .board{
 display:none;
-grid-template-columns:repeat(5,55px);
+grid-template-columns:repeat(5,42px);
 gap:10px;
 justify-content:center;
 margin-top:30px;
+padding-bottom:40px;
 }
 
 .cell{
@@ -117,6 +118,11 @@ transition:0.2s;
 background:orange;
 border:2px solid #ffcc80;
 transform:scale(1.1);
+}
+
+.headerCell{
+background:purple;
+border:2px solid #c084fc;
 }
 
 #calledNumber{
@@ -200,6 +206,20 @@ board.innerHTML = ""
 
 board.style.display = "grid"
 
+let bingoText = ["B","I","N","G","O"]
+
+for(let i=0;i<5;i++){
+
+let header = document.createElement("div")
+
+header.className = "cell headerCell"
+
+header.innerHTML = bingoText[i]
+
+board.appendChild(header)
+
+}
+
 let numbers = []
 
 for(let i=1;i<=75;i++){
@@ -214,7 +234,17 @@ let cell = document.createElement("div")
 
 cell.className = "cell"
 
+if(i == 12){
+
+cell.innerHTML = "FREE"
+
+cell.classList.add("marked")
+
+}else{
+
 cell.innerHTML = numbers[i]
+
+}
 
 cell.onclick = function(){
 
