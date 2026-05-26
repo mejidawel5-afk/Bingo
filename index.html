@@ -278,6 +278,18 @@ usedNumbers.push(randomNumber)
 
 document.getElementById("calledNumber").innerHTML = randomNumber
 
+let cells = document.querySelectorAll(".cell")
+
+cells.forEach(cell => {
+
+if(cell.innerHTML == randomNumber){
+
+cell.classList.add("marked")
+
+}
+
+})
+
 }
 
 </script>
